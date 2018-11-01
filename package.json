@@ -1,7 +1,7 @@
 {
   "name": "rules",
   "version": "1.0.0",
-  "description": "",
+  "description": "Learn test your Firebase security rules using the new Firestore emulator.",
   "main": "index.js",
   "scripts": {
     "test": ""
@@ -14,5 +14,13 @@
   },
   "dependencies": {
     "@firebase/testing": "^0.3.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AngularFirebase/147-firestore-emulator-rules-testing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AngularFirebase/147-firestore-emulator-rules-testing/issues"
+  },
+  "homepage": "https://github.com/AngularFirebase/147-firestore-emulator-rules-testing#readme"
 }

@@ -34,19 +34,14 @@ module.exports.teardown = async () => {
 expect.extend({
   async toAllow(x) {
     let pass = false;
-    let message = '';
     try {
       await firebase.assertSucceeds(x);
       pass = true;
-    } catch (err) {
-      message = `Expected Firebase operation to be allowed, but it failed with ${
-        err.code
-      }
-    `;
-    }
+    } catch (err) {}
+
     return {
       pass,
-      message: () => message
+      message: () => 'Expected Firebase operation to be allowed, but it failed'
     };
   }
 });
@@ -54,17 +49,14 @@ expect.extend({
 expect.extend({
   async toDeny(x) {
     let pass = false;
-    let message = '';
     try {
       await firebase.assertFails(x);
       pass = true;
-    } catch (err) {
-      message = `Expected Firebase operation to be denied, but it was allowed
-    `;
-    }
+    } catch (err) {}
     return {
       pass,
-      message: () => message
+      message: () =>
+        'Expected Firebase operation to be denied, but it was allowed'
     };
   }
 });
