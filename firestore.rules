@@ -1,0 +1,30 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Secure by default 
+    match /{document=**} {
+      allow read: if false;
+      allow write: if false;
+    }
+
+    // Unsecured Rules
+    match /posts/{docId} {
+      allow read, write;
+    }
+
+    // Secured to authenticated users
+    match /comments/{docId} {
+      allow read: if request.auth.uid != null;
+      allow write: if request.auth.uid == request.resource.data.userId;
+    }
+
+    // Role-based authorization
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data
+    }
+    
+    match /projects/{docId} {
+      allow read, write: if getUserData().roles['admin'] == true || resource.data.members.hasAny([request.auth.uid])
+    }
+  }
+}
