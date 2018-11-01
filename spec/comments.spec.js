@@ -8,7 +8,7 @@ describe('Comments rules', () => {
   test('fail when not authenticated', async () => {
     const db = await setup();
 
-    const commentsRef = db.collection('projects');
+    const commentsRef = db.collection('comments');
 
     await expect(commentsRef.get()).toDeny();
     await expect(commentsRef.add({})).toDeny();
