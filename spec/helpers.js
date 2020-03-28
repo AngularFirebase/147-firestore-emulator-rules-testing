@@ -9,11 +9,12 @@ module.exports.setup = async (auth, data) => {
   });
 
   const db = app.firestore();
+  const dbAdmin = firebase.initializeAdminApp({projectId}).firestore();
 
   // Write mock documents before rules
   if (data) {
     for (const key in data) {
-      const ref = db.doc(key);
+      const ref = dbAdmin.doc(key);
       await ref.set(data[key]);
     }
   }
