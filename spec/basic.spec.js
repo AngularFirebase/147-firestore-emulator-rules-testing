@@ -1,5 +1,5 @@
 const { setup, teardown } = require('./helpers');
-const { assertFails, assertSucceeds } = require('@firebase/testing');
+const { assertFails, assertSucceeds } = require('@firebase/rules-unit-testing');
 
 describe('Database rules', () => {
   let db;
@@ -18,14 +18,14 @@ describe('Database rules', () => {
   });
 
   test('fail when reading/writing an unauthorized collection', async () => {
-    const failedRead = await assertFails(ref.get());
-    expect(failedRead);
+    // const failedRead = await assertFails(ref.get());
+    // expect(failedRead);
 
     // One-line await
     expect(await assertFails(ref.add({})));
 
     // Custom Matchers
     await expect(ref.get()).toDeny();
-    await expect(ref.get()).toAllow();
+    // await expect(ref.get()).toAllow();
   });
 });
