@@ -4,16 +4,19 @@
   "description": "Learn test your Firebase security rules using the new Firestore emulator.",
   "main": "index.js",
   "scripts": {
-    "test": ""
+    "test": "npx jest ./spec/*",
+    "start:firebase-emulators": "firebase emulators:start --only firestore",
+    "start:firebase-emulators-exec-todo": "firebase emulators:exec --only firestore 'node index.js'",
+    "stop:firebase-emulators-macos": "lsof -t -i :5001 -i:5002 -i:8080 -i:9000  | xargs kill -9"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^23.6.0"
+    "jest": "^26.6.3"
   },
   "dependencies": {
-    "@firebase/testing": "^0.3.0"
+    "@firebase/rules-unit-testing": "^1.2.10"
   },
   "repository": {
     "type": "git",

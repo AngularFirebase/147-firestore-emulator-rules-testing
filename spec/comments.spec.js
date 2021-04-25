@@ -17,7 +17,7 @@ describe('Comments rules', () => {
   test('pass when authenticated', async () => {
     const db = await setup({
       uid: 'jeffd23',
-      email: 'hello@angularfirebase.com'
+      email: 'hello@angularfirebase.com',
     });
 
     const commentsRef = db.collection('comments');
